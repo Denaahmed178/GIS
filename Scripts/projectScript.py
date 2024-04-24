@@ -7,6 +7,7 @@ featureClasses = arcpy.ListFeatureClasses()
 print(featureClasses)
 
 # Data initialize
+#place
 palaces = r".\Data\ne_10m_populated_places.shp"
 countries = r".\Data\ne_10m_admin_0_countries.shp"
 geographicLines = r".\Data\ne_10m_geographic_lines.shp"
@@ -51,3 +52,26 @@ selected_lakes_count = int(arcpy.GetCount_management("lakes_layer").getOutput(0)
 print("Total number of lakes in Africa:", selected_lakes_count)
 
 arcpy.FeatureClassToFeatureClass_conversion("lakes_layer", output_path, "lakes_in_Africa")
+
+##point 4
+# Create a shapefile for cities that have SOV0NAME equals United Kingdom.
+arcpy.MakeFeatureLayer_management(palaces,'Palaces_layer',""" "SOV0NAME"='United Kingdom' """)
+arcpy.FeatureClassToFeatureClass_conversion('Palaces_layer',output,'United Kingdom cities')
+
+###point 5
+uk=r"D:\4th year\Second smester\GIS\Gislabs\Output\United Kingdom cities.shp"
+# Using the Update Cursor update SOV0NAME fields to Britain in uk shape ile .
+with arcpy.da.UpdateCursor(uk, ['SOV0NAME']) as cursor:
+    for row in cursor:
+        row[0] = 'Britain'
+        cursor.updateRow(row)
+        print(row[0])
+#point6
+# print the name,scalerank & wikidataid for all lakes.
+cities_cursor=arcpy.SearchCursor(Lakes,['name','scalerank','wikidataid'])
+for lake in cities_cursor:
+    print(lake.getValue('name'))
+    print(lake.getValue('scalerank'))
+    print(lake.getValue('wikidataid')) +"\n"
+
+
