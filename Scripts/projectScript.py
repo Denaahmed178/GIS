@@ -55,8 +55,8 @@ arcpy.FeatureClassToFeatureClass_conversion("lakes_layer", output_path, "lakes_i
 
 ##point 4
 # Create a shapefile for cities that have SOV0NAME equals United Kingdom.
-arcpy.MakeFeatureLayer_management(palaces,'Palaces_layer',""" "SOV0NAME"='United Kingdom' """)
-arcpy.FeatureClassToFeatureClass_conversion('Palaces_layer',output,'United Kingdom cities')
+arcpy.MakeFeatureLayer_management(places,'Places_layer',""" "SOV0NAME"='United Kingdom' """)
+arcpy.FeatureClassToFeatureClass_conversion('Places_layer',output,'United Kingdom cities')
 
 ###point 5
 uk=r"D:\4th year\Second smester\GIS\Gislabs\Output\United Kingdom cities.shp"
