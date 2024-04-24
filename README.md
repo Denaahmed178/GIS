@@ -1,2 +1,2 @@
 # Geographic Information Systems 
-using python and arcpy library to manipulate data and analyzed to create new data layers.  
+using python and arcpy library to manipulate and analyze data to create new data layers.  
