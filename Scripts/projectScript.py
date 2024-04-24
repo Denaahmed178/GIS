@@ -28,7 +28,7 @@ arcpy.MakeFeatureLayer_management(countries, "Morocco_layer", """ "NAME" = 'Moro
 arcpy.SelectLayerByLocation_management("Places_layer", "WITHIN", "Morocco_layer")
 arcpy.SelectLayerByLocation_management("disputedAreas_layer", "WITHIN", "Morocco_layer")
 
-arcpy.FeatureClassToFeatureClass_conversion("Palaces_layer", output_path, "cities_in_Morocco")
+arcpy.FeatureClassToFeatureClass_conversion("Places_layer", output_path, "cities_in_Morocco")
 arcpy.FeatureClassToFeatureClass_conversion("disputedAreas_layer", output_path, "disputedAreas_in_Morocco")
 
 # print the name of cities
