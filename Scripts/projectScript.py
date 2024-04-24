@@ -17,7 +17,7 @@ boundary_lines_land = r".\Data\ne_10m_admin_0_boundary_lines_land.shp"
 Lakes = r".\Data\ne_10m_lakes.shp"
 
 # output file
-output_path = r"C:\Users\green\Desktop\project-gis\Output"
+output_path = r".\project-gis\Output"
 
 # point(2) cities & disputedAreas in Morocco
 arcpy.MakeFeatureLayer_management(places, "Places_layer")
