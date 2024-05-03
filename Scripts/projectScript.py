@@ -117,3 +117,35 @@ arcpy.SelectLayerByLocation_management("cities","INTERSECT","equator")
 
 print(arcpy.FeatureClassToFeatureClass_conversion("countries",output,"countriesInEq"))
 print(arcpy.FeatureClassToFeatureClass_conversion("cities", output, "citiesInEq"))
+###################################################################################################################
+# points 13,14
+#import arcpy
+import re
+#arcpy.env.workspace = r"C:\Users\lenovo\Desktop\project\Data"
+#arcpy.env.overwriteOutput = True
+#time = r"C:\Users\lenovo\Desktop\project\Data\ne_10m_time_zones.shp"
+#output = r"C:\Users\lenovo\Desktop\project\output"
+time = arcpy.GetParameterAsText(0)
+output = arcpy.GetParameterAsText(1)
+places_list = []
+#timezone_list = ['UTC+02:00', 'UTC-02:00']
+cities_cursor = arcpy.SearchCursor(time, ['places', 'time_zone'])
+for i in cities_cursor:
+    if i.getValue('time_zone') == 'UTC+02:00':
+        print(i.getValue('places'))
+        places_list.append(i.getValue('places'))
+print('no repetition ')
+unique_places = []
+for place in places_list:
+    # Split the string into individual countries
+    countries = re.split(r', | and ', place)
+    unique_places.extend(countries)
+final_unique_places = []
+for place in unique_places:
+    if place not in final_unique_places:
+        final_unique_places.append(place)
+for place in final_unique_places:
+    arcpy.AddMessage(place)
+    #print(place)
+
+
