@@ -148,4 +148,39 @@ for place in final_unique_places:
     arcpy.AddMessage(place)
     #print(place)
 
+################################################################################################################################################
+### points 15,16,17,18
+
+img_folder = r'F:\ArcGis-content\images'
+
+import os
+from PIL import Image, ExifTags
+
+img_contents = os.listdir(img_folder)
+
+for image in img_contents:
+    print (image)
+    full_path = os.path.join(img_folder,image)
+    print (full_path)
+    pillow_img = Image.open(full_path)
+    exif = {ExifTags.TAGS[k]: v for k , v in pillow_img.getexif().items() if k in ExifTags.TAGS}
+    print (exif )
+    gps_all = {}
+    try:
+        for key in exif['GPSInfo'].keys():
+            decoded_value = ExifTags.GPSTAGS.get(key)
+            gps_all[decoded_value]=exif['GPSInfo'][key]
+
+        long_ref = gps_all.get('GPSLongitudeRef')
+        longitude = gps_all.get('GPSLongitude')
+        lat_ref = gps_all.get('GPSLatitudeRef')
+        latitude = gps_all.get('GPSLatitude')
+
+        print (long_ref , "   ",longitude)
+        print (lat_ref, "   ", latitude)
+
+    except:
+        print ("This image has no GPS info {}".format(full_path))
+        pass
+
 
