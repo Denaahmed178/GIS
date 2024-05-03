@@ -74,4 +74,46 @@ for lake in cities_cursor:
     print(lake.getValue('scalerank'))
     print(lake.getValue('wikidataid')) +"\n"
 
+#############################################################################################################################
 
+### points 10,11
+timezone = arcpy.GetParameterAsText(0)
+# r'D:\4th Year\2nd semester\GIS\GIS\data\ne_10m_time_zones.shp'
+points = arcpy.GetParameterAsText(1)
+#r'D:\4th Year\2nd semester\GIS\GIS\data\ne_10m_populated_places.shp'
+countries = r'D:\4th Year\2nd semester\GIS\GIS\data\ne_10m_admin_0_countries.shp'
+output = arcpy.GetParameterAsText(2)
+zone = arcpy.GetParameterAsText(3)
+#r'D:\4th Year\2nd semester\GIS\GIS\output'
+
+arcpy.MakeFeatureLayer_management(points,"points")
+timeZoneCursor = arcpy.SearchCursor(timezone,['places','time_zone','zone','FID'])
+for i in timeZoneCursor:
+    if i.getValue("zone") < float(0):
+        print (i.getValue('places'))
+        print (i.getValue('time_zone')) +"\n"
+        arcpy.MakeFeatureLayer_management(timezone,"timezone",""" "FID" = {} """.format(i.getValue("FID")))
+        arcpy.SelectLayerByLocation_management("points","WITHIN","timezone")
+        arcpy.FeatureClassToFeatureClass_conversion("points",output,"placesin{}".format(i.getValue("FID")))
+        arcpy.AddMessage("success")
+
+###################################################################################################################
+
+### point 12
+countries = r'D:\4th Year\2nd semester\GIS\GIS\data\ne_10m_admin_0_countries.shp'
+cities = r'D:\4th Year\2nd semester\GIS\GIS\data\ne_10m_populated_places.shp'
+equator = r'D:\4th Year\2nd semester\GIS\GIS\data\ne_10m_geographic_lines.shp'
+output = r'D:\4th Year\2nd semester\GIS\GIS\output'
+
+arcpy.MakeFeatureLayer_management(countries,"countries")
+arcpy.MakeFeatureLayer_management(cities,"cities")
+# equatorCursor = arcpy.SearchCursor(equator,['name'])
+# for i in equatorCursor:
+
+arcpy.MakeFeatureLayer_management(equator,"equator",""" "name" = 'Equator' """)
+
+arcpy.SelectLayerByLocation_management("countries","INTERSECT","equator")
+arcpy.SelectLayerByLocation_management("cities","INTERSECT","equator")
+
+print(arcpy.FeatureClassToFeatureClass_conversion("countries",output,"countriesInEq"))
+print(arcpy.FeatureClassToFeatureClass_conversion("cities", output, "citiesInEq"))
