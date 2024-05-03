@@ -134,7 +134,7 @@ for i in cities_cursor:
     if i.getValue('time_zone') == 'UTC+02:00':
         print(i.getValue('places'))
         places_list.append(i.getValue('places'))
-print('no repetition ')
+#print('no repetition ')
 unique_places = []
 for place in places_list:
     # Split the string into individual countries
