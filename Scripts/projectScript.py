@@ -189,16 +189,24 @@ output = r'D:\4th Year\2nd semester\GIS\GIS\output'
 
 arcpy.MakeFeatureLayer_management(countries,"countries")
 arcpy.MakeFeatureLayer_management(cities,"cities")
-# equatorCursor = arcpy.SearchCursor(equator,['name'])
-# for i in equatorCursor:
 
 arcpy.MakeFeatureLayer_management(equator,"equator",""" "name" = 'Equator' """)
 
 arcpy.SelectLayerByLocation_management("countries","INTERSECT","equator")
-arcpy.SelectLayerByLocation_management("cities","INTERSECT","equator")
+arcpy.SelectLayerByLocation_management("cities","WITHIN","countries")
 
-print(arcpy.FeatureClassToFeatureClass_conversion("countries",output,"countriesInEq"))
-print(arcpy.FeatureClassToFeatureClass_conversion("cities", output, "citiesInEq"))
+countries_eq = arcpy.FeatureClassToFeatureClass_conversion("countries",output,"countriesInEq")
+cities_eq = arcpy.FeatureClassToFeatureClass_conversion("cities", output, "citiesInEq")
+
+with arcpy.da.SearchCursor(countries_eq, "NAME") as cursor:
+    print("Countries intersecting with the Equator:")
+    for row in cursor:
+        print(row[0])
+
+with arcpy.da.SearchCursor(cities_eq, "NAME") as cursor:
+    print("Cities intersecting with the Equator:")
+    for row in cursor:
+        print(row[0])
 ###################################################################################################################
 # points 13,14
 #import arcpy
