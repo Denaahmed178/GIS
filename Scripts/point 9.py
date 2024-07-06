@@ -2,7 +2,7 @@ import arcpy
 
 arcpy.env.overwriteOutput = True
 
-arcpy.env.workspace = r"C:\Users\green\Desktop\project-gis\Data"
+arcpy.env.workspace = r"...\project-gis\Data"
 
 # point 9
 # tool for point 8
