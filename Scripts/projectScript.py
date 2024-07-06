@@ -2,21 +2,21 @@ import arcpy
 
 arcpy.env.overwriteOutput = True
 
-arcpy.env.workspace = r"C:\Users\green\Desktop\project-gis\Data"
+arcpy.env.workspace = r"....\project-gis\Data"
 featureClasses = arcpy.ListFeatureClasses()
 print(featureClasses)
 
 # Data initialize
-places = r"C:\Users\green\Desktop\project-gis\Data\ne_10m_populated_places.shp"
-countries = r"C:\Users\green\Desktop\project-gis\Data\ne_10m_admin_0_countries.shp"
-geographicLines = r"C:\Users\green\Desktop\project-gis\Data\ne_10m_geographic_lines.shp"
-disputedAreas = r"C:\Users\green\Desktop\project-gis\Data\ne_10m_admin_0_disputed_areas.shp"
-timeZones = r"C:\Users\green\Desktop\project-gis\Data\ne_10m_time_zones.shp"
-boundary_lines_land = r"C:\Users\green\Desktop\project-gis\Data\ne_10m_admin_0_boundary_lines_land.shp"
-Lakes = r"C:\Users\green\Desktop\project-gis\Data\ne_10m_lakes.shp"
+places = r"....\project-gis\Data\ne_10m_populated_places.shp"
+countries = r"....\project-gis\Data\ne_10m_admin_0_countries.shp"
+geographicLines = r"....\project-gis\Data\ne_10m_geographic_lines.shp"
+disputedAreas = r"....\project-gis\Data\ne_10m_admin_0_disputed_areas.shp"
+timeZones = r"....\project-gis\Data\ne_10m_time_zones.shp"
+boundary_lines_land = r"....\project-gis\Data\ne_10m_admin_0_boundary_lines_land.shp"
+Lakes = r"....\project-gis\Data\ne_10m_lakes.shp"
 
 # output file
-output_path = r"C:\Users\green\Desktop\project-gis\Output"
+output_path = r"....\project-gis\Output"
 
 # point(2) cities & disputedAreas in Morocco
 arcpy.MakeFeatureLayer_management(places, "Places_layer")
@@ -59,7 +59,7 @@ arcpy.MakeFeatureLayer_management(places,'Places_layer',""" "SOV0NAME"='United K
 arcpy.FeatureClassToFeatureClass_conversion('Places_layer',output_path,'United Kingdom cities')
 
 # ###point 5
-uk=r"C:\Users\green\Desktop\project-gis\Output\United Kingdom cities.shp"
+uk=r"....\project-gis\Output\United Kingdom cities.shp"
 # Using the Update Cursor update SOV0NAME fields to Britain in uk shape ile .
 with arcpy.da.UpdateCursor(uk, ['SOV0NAME']) as cursor:
     for row in cursor:
@@ -158,7 +158,7 @@ with arcpy.da.SearchCursor(cities_eq, "NAME") as cursor:
 ###################################################################################################################
 # points 13
 import re
-timeZones = r"C:\Users\green\Desktop\project-gis\Data\ne_10m_time_zones.shp"
+timeZones = r"....\project-gis\Data\ne_10m_time_zones.shp"
 places_list = []
 #timezone_list = ['UTC+02:00', 'UTC-02:00']
 cities_cursor = arcpy.SearchCursor(timeZones, ['places', 'time_zone'])
@@ -182,7 +182,7 @@ for place in final_unique_places:
 ################################################################################################################################################
 ### points 15,16,17,18
 
-img_folder = r'C:\Users\green\Desktop\project-gis\images'
+img_folder = r'....\project-gis\images'
 
 import os
 from PIL import Image, ExifTags
