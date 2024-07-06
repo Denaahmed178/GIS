@@ -7,16 +7,16 @@ featureClasses = arcpy.ListFeatureClasses()
 print(featureClasses)
 
 # Data initialize
-# places = r"C:\Users\green\Desktop\project-gis\Data\ne_10m_populated_places.shp"
-# countries = r"C:\Users\green\Desktop\project-gis\Data\ne_10m_admin_0_countries.shp"
-# geographicLines = r"C:\Users\green\Desktop\project-gis\Data\ne_10m_geographic_lines.shp"
-# disputedAreas = r"C:\Users\green\Desktop\project-gis\Data\ne_10m_admin_0_disputed_areas.shp"
-# timeZones = r"C:\Users\green\Desktop\project-gis\Data\ne_10m_time_zones.shp"
-# boundary_lines_land = r"C:\Users\green\Desktop\project-gis\Data\ne_10m_admin_0_boundary_lines_land.shp"
-# Lakes = r"C:\Users\green\Desktop\project-gis\Data\ne_10m_lakes.shp"
+# places = r"....\project-gis\Data\ne_10m_populated_places.shp"
+# countries = r"....\project-gis\Data\ne_10m_admin_0_countries.shp"
+# geographicLines = r"....\project-gis\Data\ne_10m_geographic_lines.shp"
+# disputedAreas = r"....\project-gis\Data\ne_10m_admin_0_disputed_areas.shp"
+# timeZones = r"....\project-gis\Data\ne_10m_time_zones.shp"
+# boundary_lines_land = r"....\project-gis\Data\ne_10m_admin_0_boundary_lines_land.shp"
+# Lakes = r"....\project-gis\Data\ne_10m_lakes.shp"
 
 # output file
-output_path = r"C:\Users\green\Desktop\project-gis\Output"
+output_path = r"....\project-gis\Output"
 ###################################################################################################################
 # point 14
 import re
